@@ -1,3 +1,5 @@
+/* If you want to use the program, you'll need to add the IR Library (https://github.com/z3t0/Arduino-IRremote.git)
+in the lib files of arduino */
 #include <LiquidCrystal.h>
 #include <boarddefs.h>
 #include <IRremote.h>
