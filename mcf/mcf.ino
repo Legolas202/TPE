@@ -1,12 +1,12 @@
 #include <math.h>
 #include <LiquidCrystal.h>
  
-double const A= -1.96300569740801; // a presicer ?
-double const B= 9.08743780492067; // a preciser ?
+double const A= -1.96300569740801; 
+double const B= 9.08743780492067;
 int const SENSOR_PIN= A0;
 int reglux;
 int fadeAmount;
-float const pente= 0.156676986584107; // valeur trop approximatif, a recalculer
+float const pente= 2.221; 
 int led9;
 int led10;
 int led11;
@@ -15,7 +15,7 @@ LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
 
 double resistance;
-double lux;
+double luxSol;
 
 double res_lux(double a, double b, double res);
 double dig_res();
@@ -33,12 +33,12 @@ void setup() {
 
 void loop() {
     resistance = dig_res();
-    lux = res_lux(A,B,resistance);
+    luxSol = res_lux(A,B,resistance);
 
-    if (lux < 500)
+    if (luxSol < 500)
     {
-      reglux=500-lux;        //reg etant la valeur a ajuster en lux
-      fadeAmount=pente*reglux;   //calcule le nombre de volt a envoyer en fonction du nombre de lux
+      reglux=500-luxSol;        //reg etant la valeur a ajuster en lux
+      fadeAmount=pente*reglux+1.32;   //calcule le nombre de volt a envoyer en fonction du nombre de lux
     }
     else 
     { 
@@ -51,13 +51,13 @@ void loop() {
         }
     
     Serial.print("Luminosité = ");
-    Serial.println(lux);
+    Serial.println(luxSol);
     Serial.print("fadeAmount =");
     Serial.println(fadeAmount);
 
     lcd.clear();
     lcd.print("Lux = ");
-    lcd.print(lux);
+    lcd.print(luxSol);
     lcd.setCursor(0,2);
     lcd.print("Led = ");
     lcd.print(fadeAmount);
@@ -79,6 +79,7 @@ double res_lux(double a, double b, double res)
 {
     double membre1 = pow(res, a);
     double membre2 = pow(10, b);
-    double lux = membre1 * membre2;
-    return round(lux);
+    double luxP = membre1 * membre2;
+    double luxS= luxP*0.206+44; //Mouais 
+    return luxS;
 }
