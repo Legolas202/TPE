@@ -6,7 +6,7 @@ double const B= 9.08743780492067;
 int const SENSOR_PIN= A0;
 int reglux;
 int fadeAmount;
-float const pente= 2.221; 
+float const pente= 0.450; 
 int led9;
 int led10;
 int led11;
@@ -38,7 +38,7 @@ void loop() {
     if (luxSol < 500)
     {
       reglux=500-luxSol;        //reg etant la valeur a ajuster en lux
-      fadeAmount=pente*reglux+1.32;   //calcule le nombre de volt a envoyer en fonction du nombre de lux
+      fadeAmount=pente*reglux+0.537;   //calcule le nombre de volt a envoyer en fonction du nombre de lux
     }
     else 
     { 
