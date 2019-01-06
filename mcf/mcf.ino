@@ -26,7 +26,6 @@ void setup() {
   for (int a =9; a <= 11; a++) {
      pinMode (a, OUTPUT);  
   }
-  pinMode(9, OUTPUT);
   lcd.begin(16, 2);
   
 }
