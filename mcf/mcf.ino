@@ -38,7 +38,7 @@ void loop() {
     if (luxSol < 500)
     {
       reglux=500-luxSol;        //reg etant la valeur a ajuster en lux
-      fadeAmount=pente*reglux+0.537;   //calcule le nombre de volt a envoyer en fonction du nombre de lux
+      fadeAmount=pente*reglux-0.537;   //calcule le nombre de volt a envoyer en fonction du nombre de lux
     }
     else 
     { 
