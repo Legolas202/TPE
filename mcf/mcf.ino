@@ -79,6 +79,6 @@ double res_lux(double a, double b, double res)
     double membre1 = pow(res, a);
     double membre2 = pow(10, b);
     double luxP = membre1 * membre2;
-    double luxS= luxP*0.206+44; //Mouais 
+    double luxS= luxP*0.31+27; //Mouais 
     return luxS;
 }
